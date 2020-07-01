@@ -79,7 +79,7 @@ public class Recommendations {
         System.out.println("\n** Please enter the name of the ride you wish to get recommendations for **\n");
         String rideName = scanner.next().toUpperCase();
         while(!rideName.matches("[a-zA-Z\\s]+[.]?[a-zA-Z\\s]*$")) {
-            System.out.println("\nInvalid Ride Name!\n** Please re-enter only use upper or lower case letters **");
+            System.out.println("\nInvalid Ride Name!\n** Please re-enter only use upper or lower case LETTERS **");
             rideName =  scanner.next().toUpperCase();
         }
         while(!fileHandler.getRideNames().contains(rideName)){
@@ -471,7 +471,11 @@ public class Recommendations {
     private void lastOptions() throws IOException {
         // This method asks the user whether they want to revise their data or continue to email / print
         System.out.println("\nDo you want to revise your choices or continue? \n** Please enter R to revise C to continue ** ");
-        String input = scanner.next();
+        String input = scanner.next().toUpperCase();
+        while(!input.equals("R") && !input.equals("C")){
+            System.out.println("Invalid - please enter either R or C: ");
+            input = scanner.next().toUpperCase();
+        }
         switch (input){
             case "R":
                 reasons.clear();
@@ -503,11 +507,11 @@ public class Recommendations {
 
     private void graphEndOptions() throws IOException {
         // This method asks the user whether they want to see the menu options again or quit
-        System.out.println("\nDo you want to choose another option or quit? \n** Please enter M to display Recommendations or Q to quit ** ");
-        String input = scanner.next();
-        if(!input.equals("M") && !input.equals("Q")){
+        System.out.println("\nDo you want to choose another option or quit? \n** Please enter M to display the menu or Q to quit ** ");
+        String input = scanner.next().toUpperCase();
+        while(!input.equals("M") && !input.equals("Q")){
             System.out.println("Invalid - please enter either M or Q: ");
-            input = scanner.next();
+            input = scanner.next().toUpperCase();
         }
         switch (input){
             case "M":
